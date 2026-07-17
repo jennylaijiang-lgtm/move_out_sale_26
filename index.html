@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A private move-out sale in Amsterdam. Browse furniture, homeware, electronics, and more."
+    />
+    <meta name="theme-color" content="#f4efe6" />
+    <title>September Move-Out Sale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,500;6..72,600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#catalogue">Skip to catalogue</a>
+
+    <header class="hero">
+      <nav class="nav shell" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="Move-out sale home">
+          <span class="brand-mark" aria-hidden="true">S</span>
+          <span>September sale</span>
+        </a>
+        <a class="nav-contact" data-contact-link href="#contact">Message me</a>
+      </nav>
+
+      <div class="hero-content shell" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">Amsterdam · September 2026</p>
+          <h1>Good things,<br /><em>ready for a new home.</em></h1>
+          <p class="hero-intro">
+            I’m moving and selling a collection of furniture, homeware, and everyday favourites.
+            Browse the catalogue and message me if something catches your eye.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#catalogue">Browse everything</a>
+            <a class="button button-light" data-contact-link href="#contact">Ask a question</a>
+          </div>
+        </div>
+
+        <aside class="pickup-card" aria-label="Sale information">
+          <span class="pickup-icon" aria-hidden="true">↗</span>
+          <p class="pickup-label">Collection</p>
+          <p class="pickup-place" data-pickup-area>Amsterdam</p>
+          <p class="pickup-dates" data-pickup-dates>1–30 September 2026</p>
+          <div class="pickup-divider"></div>
+          <p class="pickup-note">Exact address shared privately after arranging collection.</p>
+        </aside>
+      </div>
+
+      <div class="hero-strip" aria-hidden="true">
+        <span>Furniture</span><i>✦</i><span>Homeware</span><i>✦</i><span>Electronics</span><i>✦</i><span>Small treasures</span>
+      </div>
+    </header>
+
+    <main id="catalogue">
+      <section class="catalogue shell" aria-labelledby="catalogue-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow dark">The catalogue</p>
+            <h2 id="catalogue-title">Find your favourite</h2>
+          </div>
+          <p class="result-count" aria-live="polite"><span id="result-count">0</span> items</p>
+        </div>
+
+        <div class="filters" aria-label="Catalogue filters">
+          <label class="search-field">
+            <span class="sr-only">Search catalogue</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m20 20-4-4"></path>
+            </svg>
+            <input id="search" type="search" placeholder="Search items, notes, categories…" />
+          </label>
+
+          <label class="select-field">
+            <span>Sort by</span>
+            <select id="sort">
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: low to high</option>
+              <option value="price-high">Price: high to low</option>
+              <option value="name">Name: A–Z</option>
+            </select>
+          </label>
+
+          <label class="sold-toggle">
+            <input id="hide-sold" type="checkbox" />
+            <span aria-hidden="true"></span>
+            Hide sold
+          </label>
+        </div>
+
+        <div class="category-row" id="category-row" aria-label="Filter by category"></div>
+
+        <div id="catalogue-alert" class="catalogue-alert" role="alert" hidden></div>
+        <div id="product-grid" class="product-grid" aria-live="polite"></div>
+
+        <div id="empty-state" class="empty-state" hidden>
+          <span aria-hidden="true">⌕</span>
+          <h3>No matching items</h3>
+          <p>Try another search or clear the current filters.</p>
+          <button class="button button-dark" id="reset-filters" type="button">Clear filters</button>
+        </div>
+      </section>
+
+      <section class="how-it-works shell" aria-labelledby="how-title">
+        <div class="how-heading">
+          <p class="eyebrow dark">Simple and friendly</p>
+          <h2 id="how-title">How it works</h2>
+        </div>
+        <ol class="steps">
+          <li><span>01</span><h3>Find something</h3><p>Browse, search, and filter the catalogue.</p></li>
+          <li><span>02</span><h3>Send a message</h3><p>Each item creates a ready-to-send WhatsApp message.</p></li>
+          <li><span>03</span><h3>Arrange pickup</h3><p>We’ll agree on a convenient time in September.</p></li>
+        </ol>
+      </section>
+
+      <section class="contact shell" id="contact" aria-labelledby="contact-title">
+        <div>
+          <p class="eyebrow">Questions welcome</p>
+          <h2 id="contact-title">Interested in more<br />than one thing?</h2>
+        </div>
+        <div class="contact-copy">
+          <p>Send me one message with your list. I’m happy to answer questions or discuss a fair bundle price.</p>
+          <a class="button button-light" data-contact-link href="#contact">Message me on WhatsApp</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer shell">
+      <p>September Move-Out Sale · Amsterdam</p>
+      <p>Private second-hand sale · Availability can change quickly</p>
+    </footer>
+
+    <div class="modal-backdrop" id="item-modal" hidden>
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" id="modal-close" type="button" aria-label="Close item details">×</button>
+        <div class="modal-gallery">
+          <div class="modal-main-image" id="modal-main-image"></div>
+          <button class="gallery-arrow gallery-prev" id="gallery-prev" type="button" aria-label="Previous photo">‹</button>
+          <button class="gallery-arrow gallery-next" id="gallery-next" type="button" aria-label="Next photo">›</button>
+          <div class="gallery-dots" id="gallery-dots" aria-label="Choose photo"></div>
+        </div>
+        <div class="modal-content">
+          <div class="modal-meta">
+            <span id="modal-category"></span>
+            <span class="status-pill" id="modal-status"></span>
+          </div>
+          <h2 id="modal-title"></h2>
+          <p class="modal-price" id="modal-price"></p>
+          <p class="modal-description" id="modal-description"></p>
+          <dl class="item-facts" id="modal-facts"></dl>
+          <div class="modal-actions">
+            <a class="button button-dark" id="modal-contact" href="#contact" target="_blank" rel="noreferrer">I’m interested</a>
+            <button class="button button-outline" id="modal-share" type="button">Share item</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

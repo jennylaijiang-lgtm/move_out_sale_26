@@ -1,0 +1,80 @@
+[
+  {
+    "id": "oak-dining-table",
+    "name": "Oak dining table",
+    "category": "Furniture",
+    "price": 120,
+    "status": "Available",
+    "shortNote": "Solid oak · seats four to six",
+    "description": "A warm solid-oak dining table with a few small signs of everyday use. Sturdy, timeless, and easy to disassemble for transport.",
+    "condition": "Good used condition",
+    "dimensions": "160 × 90 × 75 cm",
+    "pickup": "Pickup only",
+    "images": []
+  },
+  {
+    "id": "reading-chair",
+    "name": "Reading chair",
+    "category": "Furniture",
+    "price": 65,
+    "status": "Reserved",
+    "shortNote": "Comfortable boucle armchair",
+    "description": "A compact and comfortable reading chair in a soft neutral fabric. Works especially well in a bedroom or quiet corner.",
+    "condition": "Very good condition",
+    "dimensions": "78 × 76 × 82 cm",
+    "pickup": "Pickup only",
+    "images": []
+  },
+  {
+    "id": "ceramic-vase-set",
+    "name": "Ceramic vase set",
+    "category": "Homeware",
+    "price": 18,
+    "status": "Available",
+    "shortNote": "Set of three · handmade look",
+    "description": "Three ceramic vases in complementary earthy colours. Lovely together or distributed around the home.",
+    "condition": "Excellent condition",
+    "dimensions": "Tallest vase: 28 cm",
+    "pickup": "Pickup preferred",
+    "images": []
+  },
+  {
+    "id": "floor-lamp",
+    "name": "Floor lamp",
+    "category": "Lighting",
+    "price": 35,
+    "status": "Available",
+    "shortNote": "Warm light · bulb included",
+    "description": "A slim floor lamp with a linen shade and warm ambient light. The bulb is included and everything works as it should.",
+    "condition": "Good condition",
+    "dimensions": "150 cm tall",
+    "pickup": "Pickup only",
+    "images": []
+  },
+  {
+    "id": "coffee-grinder",
+    "name": "Coffee grinder",
+    "category": "Kitchen",
+    "price": 25,
+    "status": "Sold",
+    "shortNote": "Electric burr grinder",
+    "description": "A reliable electric burr grinder with adjustable grind size. Cleaned and ready for its next kitchen.",
+    "condition": "Good working condition",
+    "dimensions": "21 × 14 × 11 cm",
+    "pickup": "Pickup or local handover",
+    "images": []
+  },
+  {
+    "id": "desk-monitor",
+    "name": "27-inch monitor",
+    "category": "Electronics",
+    "price": 90,
+    "status": "Available",
+    "shortNote": "QHD display · stand included",
+    "description": "A sharp 27-inch QHD monitor, ideal for a home office. Includes the original stand, power cable, and HDMI cable.",
+    "condition": "Very good condition",
+    "dimensions": "27-inch display",
+    "pickup": "Pickup only",
+    "images": []
+  }
+]
