@@ -76,4 +76,6 @@ Do not publish your exact home address. Share it privately after agreeing on a p
 
 ## Licence
 
-No licence has been added yet. Add an MIT `LICENSE` file only if you want others to be able to reuse the website code. Product photographs, catalogue entries, descriptions, and personal content can be explicitly excluded from that licence in this README.
+The website source code is licensed under the [MIT License](LICENSE), copyright 2026 Jenny Jiang.
+
+The MIT License does not apply to product photographs, catalogue data, item descriptions, or other personal content in this repository. Those materials remain all rights reserved unless explicitly stated otherwise.
