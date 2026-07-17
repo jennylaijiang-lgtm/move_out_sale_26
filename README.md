@@ -37,6 +37,18 @@ WhatsApp numbers must use the full international number without `+`, spaces, or 
 
 Update the page title and introductory text directly in `index.html`.
 
+Owner mode uses a separate convenience password near the top of `app.js`:
+
+```js
+const OWNER_CONFIG = {
+  password: "change-me",
+};
+```
+
+Change this placeholder before deployment. Because the password is delivered to every visitor's
+browser, it can be discovered and is not secure authentication. Owner mode never receives GitHub
+credentials and cannot publish changes directly.
+
 ### 2. Items
 
 Replace the sample entries in `catalog.json`. Each item supports:
@@ -53,17 +65,37 @@ Replace the sample entries in `catalog.json`. Each item supports:
   "condition": "Good condition",
   "dimensions": "100 × 50 × 75 cm",
   "pickup": "Pickup only",
-  "images": ["assets/item-1.webp", "assets/item-2.webp"]
+  "images": ["assets/item-1.webp", "assets/item-2.webp"],
+  "hidden": false
 }
 ```
 
 Use only `Available`, `Reserved`, or `Sold` as statuses. Set `price` to `null` to display “Price on request”. Keep every `id` unique and URL-friendly.
+Set `hidden` to `true` to retain an item in owner drafts and exports without showing it to visitors.
+Older catalogue entries without this field default to `false`.
 
 ### 3. Photos
 
 Put compressed `.webp` or `.jpg` files in `assets/`, then add their paths to the item’s `images` array. Aim for roughly 1200–1600 px on the longest side and preferably less than 500 KB per image.
 
 Do not publish your exact home address. Share it privately after agreeing on a pickup.
+
+## Manage the catalogue in Owner mode
+
+1. Select **Owner mode** in the footer and enter the password configured in `app.js`.
+2. Add or edit items, change their status, duplicate them, hide or restore them, and adjust their order.
+3. Confirm that the **Unpublished changes** badge is visible. The draft is stored only in this browser under the versioned key `move-out-sale-owner-draft-v1`.
+4. Use **Export JSON** to download a complete, validated `catalog.json`.
+5. Replace the repository's `catalog.json` with the exported file and review the Git diff.
+6. Commit and push the change; Cloudflare Pages will deploy the published catalogue.
+
+Owner mode also supports validated JSON import. An invalid import leaves the current draft unchanged.
+**Reload published** fetches the latest repository file without deleting a local draft. **Discard
+draft** permanently removes the browser-local draft after confirmation. Exiting Owner mode keeps a
+valid draft for the next unlocked session but returns the page to the published visitor catalogue.
+
+Drafts are local to one browser and device. Export regularly if the draft is important, and do not
+clear browser storage until it has been published or backed up.
 
 ## Publish with GitHub and Cloudflare Pages
 

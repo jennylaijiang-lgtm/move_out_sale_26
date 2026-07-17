@@ -51,6 +51,12 @@ Status: completed in the current prototype.
 
 ## 5. Phase 2: Local Owner Mode
 
+Status: completed in the current implementation.
+
+Owner mode uses the versioned `move-out-sale-owner-draft-v1` browser storage key. A `hidden`
+boolean was added to the catalogue schema with a default of `false`; hidden items remain in drafts
+and exports but are excluded from the visitor catalogue.
+
 ### 5.1 Entry and session
 
 - Add an unobtrusive **Owner mode** link in the footer.
@@ -201,11 +207,11 @@ No GitHub personal access token should ever be stored in front-end JavaScript. D
 
 ## 12. Recommended Implementation Order
 
-1. Add Owner mode shell, password notice, and session unlock.
-2. Add local draft storage and unpublished-change indicator.
-3. Add item editor and quick status controls.
-4. Add hide, restore, duplicate, and reorder actions.
-5. Add catalogue import, validation, and export.
+1. Completed: Add Owner mode shell, password notice, and session unlock.
+2. Completed: Add local draft storage and unpublished-change indicator.
+3. Completed: Add item editor and quick status controls.
+4. Completed: Add hide, restore, duplicate, and reorder actions.
+5. Completed: Add catalogue import, validation, and export.
 6. Improve photograph-path previews and warnings.
 7. Complete accessibility behaviour for dialogs and forms.
 8. Test all visitor and owner workflows.
@@ -223,4 +229,3 @@ The first release is complete when:
 - No secret or private address is present in the repository or browser code.
 - Missing or invalid catalogue data produces understandable errors.
 - The documented local and Cloudflare workflows work from a clean checkout.
-

@@ -69,6 +69,30 @@
           <p class="result-count" aria-live="polite"><span id="result-count">0</span> items</p>
         </div>
 
+        <section class="owner-panel" id="owner-panel" aria-labelledby="owner-panel-title" hidden>
+          <div class="owner-panel-heading">
+            <div>
+              <p class="owner-kicker">Local owner workspace</p>
+              <h3 id="owner-panel-title">Manage catalogue</h3>
+            </div>
+            <span class="draft-badge" id="draft-badge">Published catalogue</span>
+          </div>
+          <p class="owner-security-note">
+            Changes stay in this browser until you export and publish <code>catalog.json</code>.
+            This mode hides controls for convenience; it is not secure authentication.
+          </p>
+          <div class="owner-actions">
+            <button class="button button-dark" id="owner-add-item" type="button">Add item</button>
+            <button class="button button-outline" id="owner-import" type="button">Import JSON</button>
+            <button class="button button-outline" id="owner-export" type="button">Export JSON</button>
+            <button class="button button-outline" id="owner-reload" type="button">Reload published</button>
+            <button class="button button-danger" id="owner-discard" type="button" disabled>Discard draft</button>
+            <button class="button button-text" id="owner-exit" type="button">Exit owner mode</button>
+          </div>
+          <input id="owner-import-file" type="file" accept="application/json,.json" hidden />
+          <p class="owner-message" id="owner-message" role="status" aria-live="polite"></p>
+        </section>
+
         <div class="filters" aria-label="Catalogue filters">
           <label class="search-field">
             <span class="sr-only">Search catalogue</span>
@@ -135,7 +159,7 @@
 
     <footer class="footer shell">
       <p>September Move-Out Sale · Amsterdam</p>
-      <p>Private second-hand sale · Availability can change quickly</p>
+      <p>Private second-hand sale · Availability can change quickly · <button class="owner-link" id="owner-entry" type="button">Owner mode</button></p>
     </footer>
 
     <div class="modal-backdrop" id="item-modal" hidden>
@@ -161,6 +185,96 @@
             <button class="button button-outline" id="modal-share" type="button">Share item</button>
           </div>
         </div>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="owner-login-modal" hidden>
+      <section class="owner-dialog owner-login-dialog" role="dialog" aria-modal="true" aria-labelledby="owner-login-title">
+        <button class="modal-close" data-owner-close="login" type="button" aria-label="Close owner login">×</button>
+        <p class="owner-kicker">Catalogue management</p>
+        <h2 id="owner-login-title">Enter Owner mode</h2>
+        <p>
+          This password only hides editing controls from casual visitors. It does not provide secure
+          authentication, and edits cannot publish directly.
+        </p>
+        <form id="owner-login-form" novalidate>
+          <label class="form-field">
+            <span>Password</span>
+            <input id="owner-password" name="password" type="password" autocomplete="current-password" required aria-describedby="owner-login-error" />
+          </label>
+          <p class="form-error" id="owner-login-error" role="alert"></p>
+          <div class="dialog-actions">
+            <button class="button button-dark" type="submit">Unlock</button>
+            <button class="button button-outline" data-owner-close="login" type="button">Cancel</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="owner-editor-modal" hidden>
+      <section class="owner-dialog owner-editor-dialog" role="dialog" aria-modal="true" aria-labelledby="owner-editor-title">
+        <button class="modal-close" data-owner-close="editor" type="button" aria-label="Close item editor">×</button>
+        <p class="owner-kicker">Local draft</p>
+        <h2 id="owner-editor-title">Add item</h2>
+        <form id="owner-editor-form" novalidate>
+          <div class="form-error form-error-summary" id="owner-editor-errors" role="alert" tabindex="-1"></div>
+          <div class="form-grid">
+            <label class="form-field form-field-wide">
+              <span>Name <b aria-hidden="true">*</b></span>
+              <input id="editor-name" name="name" type="text" required aria-describedby="owner-editor-errors" />
+            </label>
+            <label class="form-field">
+              <span>ID <b aria-hidden="true">*</b></span>
+              <input id="editor-id" name="id" type="text" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" aria-describedby="editor-id-help owner-editor-errors" />
+              <small id="editor-id-help">Lowercase letters, numbers, and hyphens.</small>
+            </label>
+            <label class="form-field">
+              <span>Category <b aria-hidden="true">*</b></span>
+              <input id="editor-category" name="category" type="text" required aria-describedby="owner-editor-errors" />
+            </label>
+            <label class="form-field">
+              <span>Price</span>
+              <input id="editor-price" name="price" type="number" min="0" step="0.01" placeholder="Leave blank for price on request" aria-describedby="owner-editor-errors" />
+            </label>
+            <label class="form-field">
+              <span>Status <b aria-hidden="true">*</b></span>
+              <select id="editor-status" name="status" required>
+                <option>Available</option>
+                <option>Reserved</option>
+                <option>Sold</option>
+              </select>
+            </label>
+            <label class="form-field form-field-wide">
+              <span>Short card note</span>
+              <input id="editor-short-note" name="shortNote" type="text" />
+            </label>
+            <label class="form-field form-field-wide">
+              <span>Description</span>
+              <textarea id="editor-description" name="description" rows="4"></textarea>
+            </label>
+            <label class="form-field">
+              <span>Condition</span>
+              <input id="editor-condition" name="condition" type="text" />
+            </label>
+            <label class="form-field">
+              <span>Dimensions</span>
+              <input id="editor-dimensions" name="dimensions" type="text" />
+            </label>
+            <label class="form-field form-field-wide">
+              <span>Pickup note</span>
+              <input id="editor-pickup" name="pickup" type="text" />
+            </label>
+            <label class="form-field form-field-wide">
+              <span>Image paths</span>
+              <textarea id="editor-images" name="images" rows="4" placeholder="One path per line, for example assets/oak-table-1.webp"></textarea>
+              <small>Files must already exist in the repository’s <code>assets/</code> folder.</small>
+            </label>
+          </div>
+          <div class="dialog-actions">
+            <button class="button button-dark" type="submit">Save to draft</button>
+            <button class="button button-outline" data-owner-close="editor" type="button">Cancel</button>
+          </div>
+        </form>
       </section>
     </div>
 

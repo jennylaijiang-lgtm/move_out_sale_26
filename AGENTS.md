@@ -58,7 +58,8 @@ In order of importance:
   "condition": "Good condition",
   "dimensions": "100 × 50 × 75 cm",
   "pickup": "Pickup only",
-  "images": ["assets/item-1.webp", "assets/item-2.webp"]
+  "images": ["assets/item-1.webp", "assets/item-2.webp"],
+  "hidden": false
 }
 ```
 
@@ -69,6 +70,7 @@ Catalogue requirements:
 - `price` must be a non-negative number or `null` for “Price on request”.
 - `status` must be exactly `Available`, `Reserved`, or `Sold`.
 - `images` must be an array of repository-relative paths or intentionally approved remote URLs.
+- `hidden` must be a boolean when present and defaults to `false`; hidden items stay in owner drafts and exports but are excluded from the visitor catalogue.
 - Never silently discard unknown or hidden item data during import/export.
 - New schema fields require defaults for existing catalogue entries.
 - Exports should be deterministic and readable with two-space JSON indentation.
@@ -184,4 +186,3 @@ A change is done only when:
 - Security and privacy boundaries remain intact.
 - Documentation is updated when the workflow or data contract changes.
 - Remaining placeholders, limitations, and manual steps are clearly reported.
-
